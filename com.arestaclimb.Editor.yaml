@@ -6,18 +6,6 @@ base: io.qt.PySide.BaseApp
 base-version: "6.11"
 command: EditorAresta
 
-build-options:
-  env:
-    BASEAPP_REMOVE_WEBENGINE: "1"
-    BASEAPP_DISABLE_NUMPY: "1"
-
-cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /share/man
-  - "*.la"
-  - "*.a"
-
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -31,6 +19,18 @@ finish-args:
   - --talk-name=org.kde.kwalletd
   - --env=XKB_LOG_LEVEL=critical
 
+build-options:
+  env:
+    BASEAPP_REMOVE_WEBENGINE: "1"
+    BASEAPP_DISABLE_NUMPY: "1"
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /share/man
+  - "*.la"
+  - "*.a"
+
 cleanup-commands:
   - /app/cleanup-BaseApp.sh
 
@@ -40,7 +40,7 @@ modules:
   - name: aresta-editor
     buildsystem: simple
     build-commands:
-      # Instalação dos arquivos do editor
+      # Editor's Python scripts
       - mkdir -p /app/share/aresta-editor
       - cp -r editor /app/share/aresta-editor/
       - cp -r aresta_api /app/share/aresta-editor/
@@ -50,22 +50,22 @@ modules:
       - cp -r serving /app/share/aresta-editor/
       - cp uv.lock /app/share/aresta-editor/
       - echo "producao" > /app/share/aresta-editor/canal.txt
-      # Criação do script lançador nativo
+      # Native launcher
       - |
-        cat << 'EOF' > /app/bin/EditorAresta
-        #!/bin/sh
-        export PYTHONPATH="/app/lib/python3.11/site-packages:/app/lib/python3.12/site-packages:/app/lib/python3.13/site-packages:/app/share/aresta-editor:$PYTHONPATH"
-        exec python3 -m editor.main "$@"
-        EOF
+          cat << 'EOF' > /app/bin/EditorAresta
+          #!/bin/sh
+          export PYTHONPATH="/app/lib/python3.11/site-packages:/app/lib/python3.12/site-packages:/app/lib/python3.13/site-packages:/app/share/aresta-editor:$PYTHONPATH"
+          exec python3 -m editor.main "$@"
+          EOF
       - chmod +x /app/bin/EditorAresta
-      # Instalação dos arquivos de integração do desktop
+      # Desktop integration
       - install -D -m644 com.arestaclimb.Editor.desktop /app/share/applications/com.arestaclimb.Editor.desktop
       - install -D -m644 com.arestaclimb.Editor.metainfo.xml /app/share/metainfo/com.arestaclimb.Editor.metainfo.xml
       - install -D -m644 logo_app.png /app/share/icons/hicolor/512x512/apps/com.arestaclimb.Editor.png
     sources:
       - type: archive
-        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.3.14/EditorAresta-0.3.14-source.tar.gz
-        sha256: 17d6ebb47f708e893a337242e103a3c45e2d111d40041efa8a677633923642aa
+        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.3/EditorAresta-0.4.3-source.tar.gz
+        sha256: 18fa035946e13fdeec710b2e2ca520d58238c7ad16b276338aff60673e359ac8
       - type: file
         path: com.arestaclimb.Editor.desktop
       - type: file
