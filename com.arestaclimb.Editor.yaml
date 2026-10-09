@@ -11,9 +11,6 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --share=network
-  - --filesystem=xdg-documents
-  - --filesystem=home:ro
-  - --talk-name=org.freedesktop.portal.*
   - --talk-name=org.freedesktop.secrets
   - --talk-name=org.kde.kwalletd5
   - --talk-name=org.kde.kwalletd
@@ -65,7 +62,8 @@ modules:
     sources:
       - type: archive
         url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.3/EditorAresta-0.4.3-source.tar.gz
-        sha256: 18fa035946e13fdeec710b2e2ca520d58238c7ad16b276338aff60673e359ac8
+        sha256: 980be1e04bf9c7164c28847e1f56831fde478894151f2b7646b3228140434e3c
+        strip-components: 0
       - type: file
         path: com.arestaclimb.Editor.desktop
       - type: file
