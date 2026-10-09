@@ -61,8 +61,8 @@ modules:
       - install -D -m644 logo_app.png /app/share/icons/hicolor/512x512/apps/com.arestaclimb.Editor.png
     sources:
       - type: archive
-        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.3/EditorAresta-0.4.3-source.tar.gz
-        sha256: 980be1e04bf9c7164c28847e1f56831fde478894151f2b7646b3228140434e3c
+        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.4/EditorAresta-0.4.4-source.tar.gz
+        sha256: ecfbecb2f3ed5593d22464548b3b1a46dc1376c327f76bb7df4536758dccf739
         strip-components: 0
       - type: file
         path: com.arestaclimb.Editor.desktop
