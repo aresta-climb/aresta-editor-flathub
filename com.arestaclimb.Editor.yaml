@@ -11,7 +11,6 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --share=network
-  - --talk-name=org.freedesktop.secrets
   - --env=XKB_LOG_LEVEL=critical
 
 build-options:
@@ -53,6 +52,6 @@ modules:
       - install -D -m644 editor/recursos/logo_app.png /app/share/icons/hicolor/512x512/apps/com.arestaclimb.Editor.png
     sources:
       - type: archive
-        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.7/EditorAresta-0.4.7-source.tar.gz
-        sha256: 534f97d26b3357a84353c9d08e5b14312a53d49cc8248d9eab93db4c5141d0a3
+        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.9/EditorAresta-0.4.9-source.tar.gz
+        sha256: b0b063cdfa9ce00b3f58b62ec50520ee20b244c1af66e09b0f534576d9ec7adb
         strip-components: 0
