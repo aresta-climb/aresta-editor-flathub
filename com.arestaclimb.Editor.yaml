@@ -48,25 +48,13 @@ modules:
       - cp uv.lock /app/share/aresta-editor/
       - echo "producao" > /app/share/aresta-editor/canal.txt
       # Native launcher
-      - |
-          cat << 'EOF' > /app/bin/EditorAresta
-          #!/bin/sh
-          export PYTHONPATH="/app/lib/python3.11/site-packages:/app/lib/python3.12/site-packages:/app/lib/python3.13/site-packages:/app/share/aresta-editor:$PYTHONPATH"
-          exec python3 -m editor.main "$@"
-          EOF
-      - chmod +x /app/bin/EditorAresta
+      - install -D -m755 editor/flatpak/EditorAresta.sh /app/bin/EditorAresta
       # Desktop integration
-      - install -D -m644 com.arestaclimb.Editor.desktop /app/share/applications/com.arestaclimb.Editor.desktop
-      - install -D -m644 com.arestaclimb.Editor.metainfo.xml /app/share/metainfo/com.arestaclimb.Editor.metainfo.xml
-      - install -D -m644 logo_app.png /app/share/icons/hicolor/512x512/apps/com.arestaclimb.Editor.png
+      - install -D -m644 editor/flatpak/com.arestaclimb.Editor.desktop /app/share/applications/com.arestaclimb.Editor.desktop
+      - install -D -m644 editor/flatpak/com.arestaclimb.Editor.metainfo.xml /app/share/metainfo/com.arestaclimb.Editor.metainfo.xml
+      - install -D -m644 editor/recursos/logo_app.png /app/share/icons/hicolor/512x512/apps/com.arestaclimb.Editor.png
     sources:
       - type: archive
-        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.4/EditorAresta-0.4.4-source.tar.gz
-        sha256: ecfbecb2f3ed5593d22464548b3b1a46dc1376c327f76bb7df4536758dccf739
+        url: https://github.com/aresta-climb/aresta_db/releases/download/editor-v0.4.5/EditorAresta-0.4.5-source.tar.gz
+        sha256: 230a2b1d38ea9462e51b08d65a36c76404843135aba906c9164d866a9351762a
         strip-components: 0
-      - type: file
-        path: com.arestaclimb.Editor.desktop
-      - type: file
-        path: com.arestaclimb.Editor.metainfo.xml
-      - type: file
-        path: logo_app.png
